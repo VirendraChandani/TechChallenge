@@ -2,7 +2,7 @@
 using TechChallenge.Common.Infrastructure.Dto;
 using TechChallenge.Exporters.Infrastructure.Services;
 
-namespace TechChallenge.Exporters.Tests
+namespace TechChallenge.Exporters.Tests.Infrastructure.Services
 {
     public class BankOfIrelandPaymentExporterTests
     {
@@ -51,7 +51,7 @@ namespace TechChallenge.Exporters.Tests
             var selectedPayments = await exporter.SelectPaymentsForBankAsync(payments);
 
             // Assert
-            selectedPayments.Should().HaveCount(2); 
+            selectedPayments.Should().HaveCount(2);
             selectedPayments.Should().Contain(p => p.Currency == "EUR" && p.Country == "IT");
             selectedPayments.Should().Contain(p => p.Currency == "USD" && p.Amount > 100000);
         }

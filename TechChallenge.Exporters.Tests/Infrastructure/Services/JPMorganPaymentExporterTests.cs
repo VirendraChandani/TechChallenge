@@ -2,7 +2,7 @@ using FluentAssertions;
 using TechChallenge.Common.Infrastructure.Dto;
 using TechChallenge.Exporters.Infrastructure.Services;
 
-namespace TechChallenge.Exporters.Tests
+namespace TechChallenge.Exporters.Tests.Infrastructure.Services
 {
     public class JPMorganPaymentExporterTests
     {
@@ -50,7 +50,7 @@ namespace TechChallenge.Exporters.Tests
             var selectedPayments = await exporter.SelectPaymentsForBankAsync(payments);
 
             // Assert
-            selectedPayments.Should().HaveCount(2); 
+            selectedPayments.Should().HaveCount(2);
             selectedPayments.Should().Contain(p => p.Currency == "USD" && p.Amount <= 100000);
             selectedPayments.Should().Contain(p => p.Currency == "GBP");
         }
@@ -127,7 +127,7 @@ namespace TechChallenge.Exporters.Tests
             var validPayments = await exporter.ValidatePaymentsAsync(payments, validationDictionary);
 
             // Assert
-            validPayments.Should().HaveCount(1); 
+            validPayments.Should().HaveCount(1);
             validationDictionary.Should().HaveCount(expectedErrors.Count);
 
             foreach (var kvp in expectedErrors)
